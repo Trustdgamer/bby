@@ -1,85 +1,294 @@
  <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Praise ❤️ Aimi</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-    <script>
-      function checkLogin(event) {
-        event.preventDefault();
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
-        if (username === 'aimi' && password === 'aimi') {
-          document.getElementById('login').style.display = 'none';
-          document.getElementById('main').style.display = 'block';
-        } else {
-          alert('Incorrect credentials. Try again.');
-        }
-      }
-    </script>
-    <style>
-      body {
-        background: linear-gradient(135deg, #ffdde1, #f2f2f2, #c1c8e4, #ffb3c1, #ffe4e1);
-        background-size: 400% 400%;
-        animation: gradientBG 15s ease infinite;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Birthday, Omotola!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #fceabb 0%, #f8b500 100%);
+      color: #3e1f47;
+      min-height: 100vh;
+      overflow-x: hidden;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    body.dark {
+      background: #1b1b1b;
+      color: #f4f4f4;
+    }
+    header {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3rem;
+      text-align: center;
+      padding: 4rem 1rem 2rem;
+      color: #fff;
+      text-shadow: 2px 2px 8px #9e3e6e;
+      animation: glow 2.5s ease-in-out infinite alternate;
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 5px #ff6f91; }
+      to { text-shadow: 0 0 20px #ff3c78; }
+    }
+    main {
+      max-width: 900px;
+      margin: 0 auto 4rem;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 1.5rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    main.dark {
+      background: rgba(0,0,0,0.8);
+    }
+    h2 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.2rem;
+      text-align: center;
+      color: #9e3e6e;
+    }
+    p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #5a2a5c;
+      text-align: center;
+      margin: 1rem 0;
+    }
+    video {
+      display: block;
+      width: 100%;
+      margin: 1rem auto;
+      border-radius: 15px;
+    }
+    .jump-btn {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .jump-btn a {
+      background: #ff3c78;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-size: 18px;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    .jump-btn a:hover {
+      background: #e6356b;
+    }
+    .tools {
+      margin-top: 1rem;
+      text-align: center;
+    }
+    .tools input, .tools button, .tools select {
+      margin: 5px;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+    }
+    #editor-container {
+      height: 300px;
+      margin-top: 1rem;
+      background: #fff;
+      border-radius: 12px;
+    }
+    .dark #editor-container {
+      background: #2c2c2c;
+      color: white;
+    }
+    .audio-control {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      font-size: 24px;
+      background: #ff3c78;
+      color: white;
+      border: none;
+      cursor: pointer;
+      z-index: 999;
+    }
+    #hearts-container {
+      pointer-events: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      z-index: 10;
+    }
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 18px;
+      background: #ff3c78;
+      transform: rotate(-45deg);
+      animation: fall 7s linear infinite;
+    }
+    .heart::before, .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 18px;
+      background: #ff3c78;
+      border-radius: 50%;
+    }
+    .heart::before { top: -10px; left: 0; }
+    .heart::after { top: 0; left: 10px; }
+    @keyframes fall {
+      0% { transform: translateY(-30px) rotate(-45deg); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(-45deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <header>Happy Birthday, Omotola! 🎉</header>
 
-      @keyframes gradientBG {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-      }
-    </style>
-  </head>
-  <body class="min-h-screen p-4 text-center">
-    <!-- Login Page -->
-    <div id="login" class="flex flex-col items-center justify-center min-h-screen">
-      <div class="bg-white/70 backdrop-blur-md shadow-xl rounded-xl p-6 w-full max-w-sm">
-        <h2 class="text-2xl font-bold text-rose-700 mb-4">Login to view our story</h2>
-        <form onsubmit="checkLogin(event)">
-          <input type="text" id="username" placeholder="Username" class="w-full p-2 mb-3 rounded border border-rose-300" required />
-          <input type="password" id="password" placeholder="Password" class="w-full p-2 mb-3 rounded border border-rose-300" required />
-          <button type="submit" class="w-full bg-rose-500 text-white p-2 rounded hover:bg-rose-600">Login</button>
-        </form>
-      </div>
+  <main id="main-content">
+    <h2>A Love Letter Just For You</h2>
+    <p>
+      Dear Omotola,<br /><br />
+      On this special day, I want you to know how much you mean to me.<br />
+      Your smile lights up my world and your kindness warms my heart.<br />
+      Every moment spent with you is a treasure I cherish deeply.<br />
+      May your birthday be filled with love, laughter, and joy as beautiful as you.<br /><br />
+      <strong>Happy Birthday, my queen! 💖</strong><br /><br />
+      Forever yours,<br />
+      Praise
+    </p>
+
+    <video controls>
+      <source src="lil...tee_7415252550598921477.mp4" type="video/mp4">
+    </video>
+    <video controls>
+      <source src="VID-20250621-WA0006.mp4" type="video/mp4">
+    </video>
+    <video controls>
+      <source src="VID-20250627-WA0021.mp4" type="video/mp4">
+    </video>
+    <video controls>
+      <source src="VID_20241230_205801_068.mp4" type="video/mp4">
+    </video>
+
+    <div class="jump-btn">
+      <a href="#editor-section">✍️ Write Your Story</a>
     </div>
 
-    <!-- Main Content -->
-    <div id="main" style="display: none;">
-      <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_lg1kqvny.json" background="transparent" speed="1" style="width: 150px; height: 150px; margin: auto;" loop autoplay></lottie-player>
-      <h1 class="text-4xl md:text-6xl font-bold text-rose-700 mb-4 animate-pulse">
-        Praise ❤️ Aimi
-      </h1>
-      <p class="text-lg md:text-xl max-w-xl text-rose-900 mb-8 mx-auto">
-        "From a simple hello online to something truly special. We've now met once, and I can't wait for more. You're my favorite notification, Omotola."
-      </p>
-
-      <div class="bg-white/50 backdrop-blur-md rounded-2xl shadow-xl p-6 w-full max-w-md mx-auto mb-6">
-        <h2 class="text-2xl font-semibold text-rose-600 mb-2">🌍 How We Met</h2>
-        <p class="text-rose-800">We met online, started with chats, and eventually had our beautiful first meeting in person. That moment sealed everything—our connection is real.</p>
+    <div id="editor-section">
+      <h2>Your Story World ✨</h2>
+      <p>Write anything you love. Save it. Come back later. It's always here. 💌</p>
+      <div class="tools">
+        <input id="story-title" placeholder="Enter Story Title" />
+        <select id="font-selector">
+          <option value="sans-serif">Sans-serif</option>
+          <option value="serif">Serif</option>
+          <option value="monospace">Monospace</option>
+          <option value="cursive">Cursive</option>
+        </select>
+        <select id="font-size">
+          <option value="14px">Small</option>
+          <option value="18px" selected>Medium</option>
+          <option value="22px">Large</option>
+        </select>
+        <button onclick="saveStory()">💾 Save</button>
+        <button onclick="downloadStory('txt')">📄 .txt</button>
+        <button onclick="downloadStory('pdf')">📄 .pdf</button>
+        <button onclick="toggleTheme()">🌓 Toggle Theme</button>
       </div>
-
-      <div class="bg-white/50 backdrop-blur-md rounded-2xl shadow-xl p-6 w-full max-w-md mx-auto mb-6">
-        <h2 class="text-2xl font-semibold text-rose-600 mb-2">💖 Favorite Things About You</h2>
-        <ul class="list-disc text-left text-rose-800 pl-5">
-          <li>Your smile lights up my day</li>
-          <li>The way you always check on me</li>
-          <li>Your beautiful mind and kind heart</li>
-          <li>and more nd more...</li>
-        </ul>
-      </div>
-
-      <div class="bg-white/50 backdrop-blur-md rounded-2xl shadow-xl p-6 w-full max-w-md mx-auto mb-6">
-        <h2 class="text-2xl font-semibold text-rose-600 mb-2">📸 Memories Coming Soon</h2>
-        <p class="text-rose-800">Photos from our time together will be right here soon. Stay tuned ❤️</p>
-      </div>
-
-      <div class="mt-10 text-rose-700 text-sm">This is just the beginning of our story... 💖</div>
-      <audio autoplay loop volume="0.4">
-        <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mp3" />
-      </audio>
+      <div id="editor-container"></div>
     </div>
-  </body>
+  </main>
+
+  <button class="audio-control" id="audio-toggle">▶️</button>
+  <audio id="bg-music" loop>
+    <source src="https://dl.sndup.net/b9qt/Luna%20Bella.mp3" type="audio/mpeg" />
+  </audio>
+  <div id="hearts-container"></div>
+
+  <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    const heartsContainer = document.getElementById('hearts-container');
+    setInterval(() => {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.animationDuration = 4 + Math.random() * 3 + 's';
+      heartsContainer.appendChild(heart);
+      setTimeout(() => heart.remove(), 7000);
+    }, 300);
+
+    const audio = document.getElementById('bg-music');
+    const toggleBtn = document.getElementById('audio-toggle');
+    toggleBtn.onclick = () => {
+      if (audio.paused) {
+        audio.play();
+        toggleBtn.textContent = '🔈';
+      } else {
+        audio.pause();
+        toggleBtn.textContent = '▶️';
+      }
+    };
+
+    const quill = new Quill('#editor-container', {
+      theme: 'snow',
+      modules: {
+        toolbar: [['bold', 'italic', 'underline'], [{ list: 'bullet' }]]
+      },
+      placeholder: 'Start writing your story here...'
+    });
+
+    const titleInput = document.getElementById('story-title');
+    const saved = JSON.parse(localStorage.getItem('storyData') || '{}');
+    if (saved.title) titleInput.value = saved.title;
+    if (saved.content) quill.root.innerHTML = saved.content;
+
+    function saveStory() {
+      localStorage.setItem('storyData', JSON.stringify({
+        title: titleInput.value,
+        content: quill.root.innerHTML
+      }));
+      alert("Story Saved!");
+    }
+
+    function downloadStory(type) {
+      const title = titleInput.value || 'MyStory';
+      const content = quill.root.innerText;
+      if (type === 'txt') {
+        const blob = new Blob([content], { type: 'text/plain' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = title + '.txt';
+        a.click();
+      } else {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        doc.text(content, 10, 10, { maxWidth: 180 });
+        doc.save(title + '.pdf');
+      }
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle('dark');
+      document.getElementById('main-content').classList.toggle('dark');
+    }
+
+    document.getElementById('font-selector').onchange = e => {
+      quill.root.style.fontFamily = e.target.value;
+    };
+    document.getElementById('font-size').onchange = e => {
+      quill.root.style.fontSize = e.target.value;
+    };
+  </script>
+</body>
 </html>
